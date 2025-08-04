@@ -3,74 +3,106 @@ object Form2: TForm2
   Top = 0
   Caption = 'Form2'
   ClientHeight = 441
-  ClientWidth = 662
+  ClientWidth = 657
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
-  object Panel1: TPanel
-    Left = 96
-    Top = 64
-    Width = 457
-    Height = 297
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 0
+    Width = 657
+    Height = 441
+    ActivePage = TabSheet1
+    Align = alClient
     TabOrder = 0
-    object Label1: TLabel
-      Left = 136
-      Top = 32
-      Width = 152
-      Height = 23
-      Caption = 'Menu Acad'#234'mico'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = 23
-      Font.Name = 'Arial Black'
-      Font.Style = []
-      ParentFont = False
-    end
-    object BtnEstudantes: TButton
-      Left = 152
-      Top = 88
-      Width = 129
-      Height = 25
+    object TabSheet1: TTabSheet
       Caption = 'Estudantes'
-      TabOrder = 0
-      OnClick = BtnEstudantesClick
+      object Label1: TLabel
+        Left = 227
+        Top = 32
+        Width = 210
+        Height = 29
+        Caption = 'Menu Estudantes'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -23
+        Font.Name = 'Source Code Pro'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Button1: TButton
+        Left = 263
+        Top = 112
+        Width = 122
+        Height = 34
+        Caption = 'Adicionar'
+        TabOrder = 0
+        OnClick = Button1Click
+      end
+      object Button2: TButton
+        Left = 263
+        Top = 168
+        Width = 122
+        Height = 33
+        Caption = 'Deletar'
+        TabOrder = 1
+      end
+      object Button3: TButton
+        Left = 263
+        Top = 224
+        Width = 122
+        Height = 34
+        Caption = 'Listar'
+        TabOrder = 2
+        OnClick = Button3Click
+      end
+      object Button4: TButton
+        Left = 263
+        Top = 280
+        Width = 122
+        Height = 33
+        Caption = 'Atualizar'
+        TabOrder = 3
+      end
+      object ListBox1: TListBox
+        Left = 88
+        Top = 24
+        Width = 481
+        Height = 345
+        ItemHeight = 15
+        TabOrder = 4
+        Visible = False
+      end
+      object Button5: TButton
+        Left = 287
+        Top = 375
+        Width = 113
+        Height = 25
+        Caption = 'Sair'
+        TabOrder = 5
+        OnClick = Button5Click
+      end
     end
-    object BtnProfessores: TButton
-      Left = 152
-      Top = 127
-      Width = 129
-      Height = 25
+    object TabSheet2: TTabSheet
       Caption = 'Professores'
-      TabOrder = 1
+      ImageIndex = 1
     end
-    object BtnDisciplinas: TButton
-      Left = 152
-      Top = 169
-      Width = 129
-      Height = 25
+    object TabSheet3: TTabSheet
       Caption = 'Disciplinas'
-      TabOrder = 2
+      ImageIndex = 2
     end
-    object BtnTurmas: TButton
-      Left = 152
-      Top = 213
-      Width = 129
-      Height = 25
+    object TabSheet4: TTabSheet
       Caption = 'Turmas'
-      TabOrder = 3
+      ImageIndex = 3
     end
-    object BtnMatriculas: TButton
-      Left = 152
-      Top = 253
-      Width = 129
-      Height = 25
+    object TabSheet5: TTabSheet
       Caption = 'Matriculas'
-      TabOrder = 4
-      OnClick = BtnMatriculasClick
+      ImageIndex = 4
     end
   end
 end

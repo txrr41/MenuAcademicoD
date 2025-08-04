@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2025/08/04 13:38:30.543,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/08/04 13:50:38.448,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/08/04 13:50:44.304,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2025/08/04 13:50:53.751,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2025/08/04 13:51:13.593,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
+    <Transaction>2025/08/04 13:51:18.498,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit7.pas</Transaction>
+    <Transaction>2025/08/04 14:01:11.941,C:\Users\Auditorio\Documents\CRUD\uMain.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/08/04 14:01:11.941,C:\Users\Auditorio\Documents\CRUD\uMain.dfm=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2025/08/04 14:01:26.247,C:\Users\Auditorio\Documents\CRUD\uEstudante.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/08/04 14:01:38.822,C:\Users\Auditorio\Documents\CRUD\uProfessor.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2025/08/04 14:02:11.130,C:\Users\Auditorio\Documents\CRUD\uDisciplina.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2025/08/04 14:02:51.352,C:\Users\Auditorio\Documents\CRUD\uTurma.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
+    <Transaction>2025/08/04 14:03:34.621,C:\Users\Auditorio\Documents\CRUD\uMatricula.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit7.pas</Transaction>
+    <Transaction>2025/08/04 14:21:01.017,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/08/04 14:40:11.609,C:\Users\Auditorio\Documents\CRUD\uMenuEstudantes.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/08/04 14:40:11.609,C:\Users\Auditorio\Documents\CRUD\uMenuEstudantes.dfm=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.dfm</Transaction>
+    <Transaction>2025/08/04 15:31:04.053,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2025/08/04 16:59:19.250,C:\Users\Auditorio\Documents\CRUD\crud.dproj=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Project7.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -4,40 +4,63 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
 
 type
   TForm2 = class(TForm)
-    Panel1: TPanel;
-    BtnEstudantes: TButton;
-    BtnProfessores: TButton;
-    BtnDisciplinas: TButton;
-    BtnTurmas: TButton;
-    BtnMatriculas: TButton;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
     Label1: TLabel;
-    procedure BtnEstudantesClick(Sender: TObject);
-    procedure BtnMatriculasClick(Sender: TObject);
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    ListBox1: TListBox;
+    Button5: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
   private
     { Private declarations }
   public
-    { Public declarations }
+     ListaEstudantes: TStringList;
   end;
 
 var
   Form2: TForm2;
 
+
 implementation
+  uses
+  uMenuEstudantes;
+
 
 {$R *.dfm}
 
-procedure TForm2.BtnEstudantesClick(Sender: TObject);
+procedure TForm2.Button1Click(Sender: TObject);
 begin
-
+    FormEstudantes.ShowModal;
 end;
 
-procedure TForm2.BtnMatriculasClick(Sender: TObject);
+procedure TForm2.Button3Click(Sender: TObject);
 begin
+    ListBox1.Visible := true;
+end;
 
+procedure TForm2.Button5Click(Sender: TObject);
+begin
+      List
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+   ListaEstudantes := TStringList.Create;
 end;
 
 end.
+

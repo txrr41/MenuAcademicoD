@@ -1,7 +1,7 @@
 unit uDisciplina;
 
 interface
-Type Estudante = class(TObject)
+Type Disciplina = class(TObject)
     nome: String;
     codigo: Integer;
 end;
