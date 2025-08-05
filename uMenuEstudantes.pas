@@ -14,6 +14,8 @@ type TFormEstudantes = class(TForm)
     Label2: TLabel;
     Label3: TLabel;
     Button1: TButton;
+
+
     procedure Button1Click(Sender: TObject);
 
   end;
@@ -24,22 +26,20 @@ var
 implementation
 
 {$R *.dfm}
-
+uses uDB;
 procedure TFormEstudantes.Button1Click(Sender: TObject);
 begin
-    var codigo, nome, lista: String;
+var
+  id, nome, lista: String;
 
-    codigo := Edit1.Text;
-    nome := Edit2.Text;
+  id := Edit1.Text;
+  nome := Edit2.Text;
 
-    lista := 'Codigo: ' + codigo + 'Nome: ' + nome;
+  lista := 'Código: ' + id + ' | Nome: ' + nome;
+  Form2.ListaEstudantes.Add(lista);
+  Form2.ListBox1.Items.Assign(Form2.ListaEstudantes);
 
-    Form2.ListaEstudantes.Add(lista);
-
-    Form2.ListBox1.Items.Assign(Form2.ListaEstudantes);
-
-
-
-end;
-
+ DataModule1.FDQueryEstudante.SQL.Text := 'INSERT INTO estudantes (nome, id) VALUE ('+ QuotedStr(nome) + ',' + id +')';
+ DataModule1.FDQueryEstudante.ExecSQL;
+  end;
 end.

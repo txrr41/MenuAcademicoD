@@ -70,13 +70,21 @@ object Form2: TForm2
         TabOrder = 3
       end
       object ListBox1: TListBox
-        Left = 88
+        Left = 72
         Top = 32
         Width = 481
         Height = 345
         ItemHeight = 15
         TabOrder = 4
         Visible = False
+      end
+      object Button5: TButton
+        Left = 263
+        Top = 319
+        Width = 113
+        Height = 25
+        Caption = 'Sair'
+        TabOrder = 5
       end
     end
     object TabSheet2: TTabSheet

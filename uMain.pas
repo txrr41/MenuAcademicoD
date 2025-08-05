@@ -20,6 +20,7 @@ type
     Button3: TButton;
     Button4: TButton;
     ListBox1: TListBox;
+    Button5: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);
