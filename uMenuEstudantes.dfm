@@ -2,8 +2,8 @@ object FormEstudantes: TFormEstudantes
   Left = 0
   Top = 0
   Caption = 'FormEstudantes'
-  ClientHeight = 535
-  ClientWidth = 752
+  ClientHeight = 430
+  ClientWidth = 612
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +12,7 @@ object FormEstudantes: TFormEstudantes
   Font.Style = []
   TextHeight = 15
   object Panel1: TPanel
-    Left = 216
+    Left = 160
     Top = 88
     Width = 329
     Height = 257
@@ -44,28 +44,28 @@ object FormEstudantes: TFormEstudantes
       Height = 15
       Caption = 'Nome'
     end
-    object Edit1: TEdit
+    object EditCodigo: TEdit
       Left = 64
       Top = 96
       Width = 201
-      Height = 25
+      Height = 23
       TabOrder = 0
     end
-    object Edit2: TEdit
+    object EditNome: TEdit
       Left = 64
       Top = 152
       Width = 201
-      Height = 25
+      Height = 23
       TabOrder = 1
     end
-    object Button1: TButton
+    object Adiconar: TButton
       Left = 120
       Top = 205
       Width = 75
       Height = 25
       Caption = 'Adicionar'
       TabOrder = 2
-      OnClick = Button1Click
+      OnClick = AdiconarClick
     end
   end
 end

@@ -15,7 +15,7 @@ object DataModule1: TDataModule1
     Left = 176
     Top = 56
   end
-  object FDQuery1: TFDQuery
+  object FDQueryEstudante: TFDQuery
     Connection = FDConnection1
     Left = 304
     Top = 64

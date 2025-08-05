@@ -14,8 +14,8 @@ object FormDeletar: TFormDeletar
   object Panel1: TPanel
     Left = 152
     Top = 80
-    Width = 329
-    Height = 257
+    Width = 321
+    Height = 185
     TabOrder = 0
     object Label1: TLabel
       Left = 64
@@ -37,34 +37,21 @@ object FormDeletar: TFormDeletar
       Height = 15
       Caption = 'Codigo'
     end
-    object Label3: TLabel
-      Left = 64
-      Top = 131
-      Width = 33
-      Height = 15
-      Caption = 'Nome'
-    end
-    object Edit1: TEdit
+    object EditCodigo: TEdit
       Left = 64
       Top = 96
       Width = 201
       Height = 23
       TabOrder = 0
     end
-    object Edit2: TEdit
-      Left = 64
-      Top = 152
-      Width = 201
-      Height = 23
-      TabOrder = 1
-    end
-    object Button1: TButton
-      Left = 128
-      Top = 205
+    object Deletar: TButton
+      Left = 120
+      Top = 141
       Width = 75
       Height = 25
       Caption = 'Deletar'
-      TabOrder = 2
+      TabOrder = 1
+      OnClick = DeletarClick
     end
   end
 end

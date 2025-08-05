@@ -35,33 +35,34 @@ object Form2: TForm2
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Button1: TButton
+      object Adicionar: TButton
         Left = 263
         Top = 112
         Width = 122
         Height = 34
         Caption = 'Adicionar'
         TabOrder = 0
-        OnClick = Button1Click
+        OnClick = AdicionarClick
       end
-      object Button2: TButton
+      object Deletar: TButton
         Left = 263
         Top = 168
         Width = 122
         Height = 33
         Caption = 'Deletar'
         TabOrder = 1
+        OnClick = DeletarClick
       end
-      object Button3: TButton
+      object Listar: TButton
         Left = 263
         Top = 224
         Width = 122
         Height = 34
         Caption = 'Listar'
         TabOrder = 2
-        OnClick = Button3Click
+        OnClick = ListarClick
       end
-      object Button4: TButton
+      object Atualizar: TButton
         Left = 263
         Top = 280
         Width = 122
@@ -70,7 +71,7 @@ object Form2: TForm2
         TabOrder = 3
       end
       object ListBox1: TListBox
-        Left = 72
+        Left = 80
         Top = 32
         Width = 481
         Height = 345
@@ -78,13 +79,15 @@ object Form2: TForm2
         TabOrder = 4
         Visible = False
       end
-      object Button5: TButton
+      object Sair: TButton
         Left = 263
-        Top = 319
+        Top = 383
         Width = 113
         Height = 25
         Caption = 'Sair'
         TabOrder = 5
+        Visible = False
+        OnClick = SairClick
       end
     end
     object TabSheet2: TTabSheet

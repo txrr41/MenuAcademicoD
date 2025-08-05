@@ -15,15 +15,17 @@ type
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     Label1: TLabel;
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
+    Adicionar: TButton;
+    Deletar: TButton;
+    Listar: TButton;
+    Atualizar: TButton;
     ListBox1: TListBox;
-    Button5: TButton;
-    procedure Button1Click(Sender: TObject);
+    Sair: TButton;
+    procedure AdicionarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure ListarClick(Sender: TObject);
+    procedure SairClick(Sender: TObject);
+    procedure DeletarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,19 +38,31 @@ var
 
 implementation
   uses
-  uMenuEstudantes;
+  uMenuEstudantes, uDeletarEstud;
 
 
 {$R *.dfm}
 
-procedure TForm2.Button1Click(Sender: TObject);
+procedure TForm2.AdicionarClick(Sender: TObject);
 begin
     FormEstudantes.ShowModal;
 end;
 
-procedure TForm2.Button3Click(Sender: TObject);
+procedure TForm2.DeletarClick(Sender: TObject);
+begin
+     FormDeletar.ShowModal;
+end;
+
+procedure TForm2.ListarClick(Sender: TObject);
 begin
     ListBox1.Visible := true;
+    Listar.Visible := true;
+end;
+
+procedure TForm2.SairClick(Sender: TObject);
+begin
+    Sair.Visible := False;
+    ListBox1.Visible := false;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);

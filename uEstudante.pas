@@ -1,7 +1,7 @@
 unit uEstudante;
 
 interface
- Type Estudante = class(TObject)
+ Type TEstudante = class(TObject)
  public
     nome: String;
     codigo: Integer;
@@ -10,7 +10,7 @@ interface
  end;
 
 implementation
-constructor Estudante.Create(aNome: String; aCodigo: Integer);
+constructor TEstudante.Create(aNome: String; aCodigo: Integer);
 begin
   Self.Nome:=aNome;
   Self.Codigo := aCodigo;
