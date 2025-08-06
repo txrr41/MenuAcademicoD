@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud;
 
 type
   TForm2 = class(TForm)
@@ -19,17 +19,17 @@ type
     Deletar: TButton;
     Listar: TButton;
     Atualizar: TButton;
-    ListBox1: TListBox;
-    Sair: TButton;
+    ListBoxEstudantes: TListBox;
     procedure AdicionarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ListarClick(Sender: TObject);
-    procedure SairClick(Sender: TObject);
     procedure DeletarClick(Sender: TObject);
+    procedure AtualizarClick(Sender: TObject);
   private
     { Private declarations }
   public
      ListaEstudantes: TStringList;
+     procedure DeletarEstudante(Estudante: TEstudante);
   end;
 
 var
@@ -48,21 +48,93 @@ begin
     FormEstudantes.ShowModal;
 end;
 
-procedure TForm2.DeletarClick(Sender: TObject);
+procedure TForm2.AtualizarClick(Sender: TObject);
+
+  VAR
+  Nome: string;
+  id: Integer;
+
 begin
-     FormDeletar.ShowModal;
+  if ListBoxEstudantes.ItemIndex = -1 then
+  begin
+    ShowMessage('Selecione um estudante para editar.');
+    Exit;
+  end;
+
+  // Extrai o ID do item selecionado (ex: "3 - Luis")
+Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+ id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+
+  // Cria e abre o formulário de edição
+  FormEditarEstudantes := TFormEditarEstudantes.Create(Self);
+  FormEditarEstudantes.CarregarEstudante(id); // Método que carrega os dados
+  FormEditarEstudantes.ShowModal;
+  FormEditarEstudantes.Free;
+
+  ListarClick(nil)
+end;
+
+
+procedure TForm2.DeletarClick(Sender: TObject);
+
+var Estudante : TEstudante;
+begin
+     DeletarEstudante(Estudante);
+end;
+
+
+
+procedure TForm2.DeletarEstudante(Estudante: TEstudante);
+    var
+  idStr: string;
+  idEstudante: Integer;
+  confirmacao: Integer;
+begin
+  if ListBoxEstudantes.ItemIndex = -1 then
+  begin
+    ShowMessage('Selecione um estudante para deletar.');
+    Exit;
+  end;
+
+
+  idStr := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+  idEstudante := StrToInt(Copy(idStr, 1, Pos(' -', idStr) - 1));
+
+
+  confirmacao := MessageDlg('Deseja realmente excluir este estudante?', mtConfirmation, [mbYes, mbNo], 0);
+  if confirmacao = mrYes then
+  begin
+    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = '+ idEstudante.ToString;
+    DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := idEstudante;
+    DataModule1.FDQueryEstudante.ExecSQL;
+
+    ShowMessage('Estudante deletado com sucesso!');
+
+    ListarClick(nil); // Recarrega a listagem
+  end;
 end;
 
 procedure TForm2.ListarClick(Sender: TObject);
 begin
-    ListBox1.Visible := true;
-    Listar.Visible := true;
-end;
+  ListBoxEstudantes.Items.Clear;
 
-procedure TForm2.SairClick(Sender: TObject);
-begin
-    Sair.Visible := False;
-    ListBox1.Visible := false;
+  try
+    DataModule1.FDQueryEstudante.Close;
+    DataModule1.FDQueryEstudante.SQL.Text := 'SELECT id, nome FROM estudantes ORDER BY id';
+    DataModule1.FDQueryEstudante.Open;
+
+    while not DataModule1.FDQueryEstudante.Eof do
+    begin
+
+    ListBoxEstudantes.Items.Add(Format('%d - %s', [DataModule1.FDQueryEstudante.FieldByName('id').AsInteger, DataModule1.FDQueryEstudante.FieldByName('nome').AsString]));
+
+      DataModule1.FDQueryEstudante.Next;
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao listar estudantes: ' + E.Message);
+  end;
+
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);

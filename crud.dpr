@@ -8,7 +8,10 @@ uses
   uDisciplina in 'uDisciplina.pas',
   uTurma in 'uTurma.pas',
   uMatricula in 'uMatricula.pas',
-  uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes};
+  uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes},
+  uDB in 'uDB.pas' {DataModule1: TDataModule},
+  uDeletarEstud in 'uDeletarEstud.pas' {FormDeletar},
+  uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes};
 
 {$R *.res}
 
@@ -17,5 +20,8 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TFormEstudantes, FormEstudantes);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TFormDeletar, FormDeletar);
+  Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
   Application.Run;
 end.

@@ -24,7 +24,7 @@ object Form2: TForm2
       Caption = 'Estudantes'
       object Label1: TLabel
         Left = 227
-        Top = 32
+        Top = 3
         Width = 210
         Height = 29
         Caption = 'Menu Estudantes'
@@ -36,58 +36,48 @@ object Form2: TForm2
         ParentFont = False
       end
       object Adicionar: TButton
-        Left = 263
-        Top = 112
-        Width = 122
-        Height = 34
+        Left = 455
+        Top = 382
+        Width = 89
+        Height = 26
         Caption = 'Adicionar'
         TabOrder = 0
         OnClick = AdicionarClick
       end
       object Deletar: TButton
-        Left = 263
-        Top = 168
-        Width = 122
-        Height = 33
+        Left = 104
+        Top = 382
+        Width = 89
+        Height = 26
         Caption = 'Deletar'
         TabOrder = 1
         OnClick = DeletarClick
       end
       object Listar: TButton
-        Left = 263
-        Top = 224
-        Width = 122
-        Height = 34
+        Left = 208
+        Top = 382
+        Width = 97
+        Height = 26
         Caption = 'Listar'
         TabOrder = 2
         OnClick = ListarClick
       end
       object Atualizar: TButton
-        Left = 263
-        Top = 280
-        Width = 122
-        Height = 33
-        Caption = 'Atualizar'
+        Left = 348
+        Top = 382
+        Width = 89
+        Height = 26
+        Caption = 'Editar'
         TabOrder = 3
+        OnClick = AtualizarClick
       end
-      object ListBox1: TListBox
-        Left = 80
-        Top = 32
-        Width = 481
-        Height = 345
+      object ListBoxEstudantes: TListBox
+        Left = 104
+        Top = 38
+        Width = 440
+        Height = 329
         ItemHeight = 15
         TabOrder = 4
-        Visible = False
-      end
-      object Sair: TButton
-        Left = 263
-        Top = 383
-        Width = 113
-        Height = 25
-        Caption = 'Sair'
-        TabOrder = 5
-        Visible = False
-        OnClick = SairClick
       end
     end
     object TabSheet2: TTabSheet

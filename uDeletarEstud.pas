@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uDB;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uDB, uEstudante;
 
 type
   TFormDeletar = class(TForm)
@@ -18,6 +18,8 @@ type
     { Private declarations }
   public
 
+  procedure DeletarEstudante(Estudante: TEstudante);
+
   end;
 
 var
@@ -28,8 +30,15 @@ implementation
 {$R *.dfm}
 
 procedure TFormDeletar.DeletarClick(Sender: TObject);
+var Estudante: TEstudante;
 begin
-var id, nome: String;
+
+      DeletarEstudante(Estudante);
+end;
+
+procedure TFormDeletar.DeletarEstudante(Estudante: TEstudante);
+begin
+  var id, nome: String;
  id := EditCodigo.Text;
 
 
