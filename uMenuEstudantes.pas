@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uMain, uEstudante;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uEstudante, System.Generics.Collections;
 
 type TFormEstudantes = class(TForm)
     Panel1: TPanel;
@@ -14,11 +14,11 @@ type TFormEstudantes = class(TForm)
     Label2: TLabel;
     Label3: TLabel;
     Adiconar: TButton;
+    ListaEstudantes: TObjectList<TEstudante>;
     procedure AdiconarClick(Sender: TObject);
-    private
-
-    public
     procedure InserirEstudante(Estudante: TEstudante);
+    procedure CriarLista;
+
 
 
   end;
@@ -36,18 +36,30 @@ begin
    InserirEstudante(Estudante);
 end;
 
-procedure TFormEstudantes.InserirEstudante(Estudante: TEstudante);
+procedure TFormEstudantes.CriarLista;
 begin
-var
+     ListaEstudantes := TObjectList<TEstudante>.Create;
+end;
+
+procedure TFormEstudantes.InserirEstudante(Estudante: TEstudante);
+ var
   id, nome, lista: String;
 
-  id := EditCodigo.Text;
-  nome := EditNome.Text;
-      try
- begin
 
- DataModule1.FDQueryEstudante.SQL.Text := 'INSERT INTO estudantes (nome, id) VALUES ('+ QuotedStr(nome) + ',' + id +')';
- DataModule1.FDQueryEstudante.ExecSQL;
+  Insert: TEstudante;
+
+begin
+
+      try
+  begin
+   id := EditCodigo.Text;
+  nome := EditNome.Text;
+
+  DataModule1.FDQueryEstudante.SQL.Text := 'INSERT INTO estudantes (nome) VALUES ('+ QuotedStr(nome) + ') returning id';
+  DataModule1.FDQueryEstudante.Open;
+   Insert := TEstudante.Create(nome, DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
+   ListaEstudantes.add(Insert);
+   DataModule1.FDQueryEstudante.Next;
 
   end;
      ShowMessage('Estudante Adicionado Com Sucesso');

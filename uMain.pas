@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes;
 
 type
   TForm2 = class(TForm)
@@ -28,7 +28,7 @@ type
   private
     { Private declarations }
   public
-     ListaEstudantes: TStringList;
+
      procedure DeletarEstudante(Estudante: TEstudante);
   end;
 
@@ -38,7 +38,7 @@ var
 
 implementation
   uses
-  uMenuEstudantes, uDeletarEstud;
+  uDeletarEstud;
 
 
 {$R *.dfm}
@@ -115,6 +115,8 @@ begin
 end;
 
 procedure TForm2.ListarClick(Sender: TObject);
+var
+estudante: TEstudante;
 begin
   ListBoxEstudantes.Items.Clear;
 
@@ -126,9 +128,17 @@ begin
     while not DataModule1.FDQueryEstudante.Eof do
     begin
 
-    ListBoxEstudantes.Items.Add(Format('%d - %s', [DataModule1.FDQueryEstudante.FieldByName('id').AsInteger, DataModule1.FDQueryEstudante.FieldByName('nome').AsString]));
 
+
+     Estudante := TEstudante.Create(DataModule1.FDQueryEstudante.FieldByName('nome').AsString,DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
+      FormEstudantes.ListaEstudantes.add(Estudante);
       DataModule1.FDQueryEstudante.Next;
+
+
+
+    end;
+     for var estud in FormEstudantes.listaestudantes do begin
+      ListBoxEstudantes.AddItem(estud.GetNome, nil);
     end;
   except
     on E: Exception do
@@ -139,7 +149,9 @@ end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 begin
-   ListaEstudantes := TStringList.Create;
+
+  FormEstudantes.CriarLista;
+
 end;
 
 end.
