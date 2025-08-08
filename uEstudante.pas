@@ -1,40 +1,50 @@
 unit uEstudante;
 
-
-
 interface
 
 uses System.Generics.Collections;
 
-
- Type TEstudante = class(TObject)
- public
+Type
+  TEstudante = class(TObject)
+  public
 
     constructor Create(aNome: String; aCodigo: Integer);
-    function GetNome : String;
-    procedure SetNome (aNome: String);
-    private
-      nome: String;
-     codigo: Integer;
+    function GetNome: String;
+    procedure SetNome(aNome: String);
+    function GetCodigo: Integer;
+    procedure SetCodigo(aCodigo: Integer);
+  private
+    nome: String;
+    codigo: Integer;
 
- end;
+  end;
 
 implementation
+
 constructor TEstudante.Create(aNome: String; aCodigo: Integer);
 begin
-  Self.Nome:=aNome;
-  Self.Codigo := aCodigo;
+  Self.nome := aNome;
+  Self.codigo := aCodigo;
 end;
 
+function TEstudante.GetCodigo: Integer;
+begin
+  result := Self.codigo;
+end;
 
 function TEstudante.GetNome: String;
 begin
-   result := Self.nome;
+  result := Self.nome;
+end;
+
+procedure TEstudante.SetCodigo(aCodigo: Integer);
+begin
+  Self.codigo := aCodigo;
 end;
 
 procedure TEstudante.SetNome(aNome: String);
 begin
-    Self.nome := aNome;
+  Self.nome := aNome;
 end;
 
 end.

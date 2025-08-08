@@ -141,10 +141,6 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="uDeletarEstud.pas">
-            <Form>FormDeletar</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="uEditarEstud.pas">
             <Form>FormEditarEstudantes</Form>
             <FormType>dfm</FormType>

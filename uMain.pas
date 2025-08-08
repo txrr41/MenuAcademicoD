@@ -21,19 +21,21 @@ type
     Atualizar: TButton;
     ListBoxEstudantes: TListBox;
     procedure AdicionarClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure ListarClick(Sender: TObject);
     procedure DeletarClick(Sender: TObject);
     procedure AtualizarClick(Sender: TObject);
   private
     { Private declarations }
   public
-
      procedure DeletarEstudante(Estudante: TEstudante);
+     procedure ListarEstudante(Estudante: TEstudante);
+     procedure AdicionarEstudante(Estudante: TEstudante);
   end;
 
 var
+  FormEstudantes: TFormEstudantes;
   Form2: TForm2;
+
 
 
 implementation
@@ -46,7 +48,15 @@ implementation
 procedure TForm2.AdicionarClick(Sender: TObject);
 begin
     FormEstudantes.ShowModal;
+
 end;
+
+procedure TForm2.AdicionarEstudante(Estudante: TEstudante);
+
+begin
+
+end;
+
 
 procedure TForm2.AtualizarClick(Sender: TObject);
 
@@ -100,11 +110,10 @@ begin
   idStr := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
   idEstudante := StrToInt(Copy(idStr, 1, Pos(' -', idStr) - 1));
 
-
   confirmacao := MessageDlg('Deseja realmente excluir este estudante?', mtConfirmation, [mbYes, mbNo], 0);
   if confirmacao = mrYes then
   begin
-    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = '+ idEstudante.ToString;
+    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = :id';
     DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := idEstudante;
     DataModule1.FDQueryEstudante.ExecSQL;
 
@@ -118,11 +127,21 @@ procedure TForm2.ListarClick(Sender: TObject);
 var
 estudante: TEstudante;
 begin
+   ListarEstudante(Estudante);
+  end;
+
+
+
+procedure TForm2.ListarEstudante(Estudante: TEstudante);
+
+begin
   ListBoxEstudantes.Items.Clear;
+  FormEstudantes.ListaEstudantes.Clear;
+
 
   try
     DataModule1.FDQueryEstudante.Close;
-    DataModule1.FDQueryEstudante.SQL.Text := 'SELECT id, nome FROM estudantes ORDER BY id';
+    DataModule1.FDQueryEstudante.SQL.Text := 'SELECT * FROM estudantes WHERE ativo = true';
     DataModule1.FDQueryEstudante.Open;
 
     while not DataModule1.FDQueryEstudante.Eof do
@@ -138,7 +157,8 @@ begin
 
     end;
      for var estud in FormEstudantes.listaestudantes do begin
-      ListBoxEstudantes.AddItem(estud.GetNome, nil);
+      ListBoxEstudantes.AddItem(estud.GetCodigo.ToString + ' - ' + estud.GetNome, nil);
+
     end;
   except
     on E: Exception do
@@ -146,13 +166,4 @@ begin
   end;
 
 end;
-
-procedure TForm2.FormCreate(Sender: TObject);
-begin
-
-  FormEstudantes.CriarLista;
-
-end;
-
 end.
-

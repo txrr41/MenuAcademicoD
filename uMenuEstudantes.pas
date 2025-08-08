@@ -3,78 +3,74 @@ unit uMenuEstudantes;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uEstudante, System.Generics.Collections;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
+  Vcl.ExtCtrls, uEstudante, System.Generics.Collections;
 
-type TFormEstudantes = class(TForm)
+type
+  TFormEstudantes = class(TForm)
     Panel1: TPanel;
     Label1: TLabel;
-    EditCodigo: TEdit;
     EditNome: TEdit;
-    Label2: TLabel;
     Label3: TLabel;
     Adiconar: TButton;
-    ListaEstudantes: TObjectList<TEstudante>;
+
     procedure AdiconarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject); // Evento do formulário
     procedure InserirEstudante(Estudante: TEstudante);
     procedure CriarLista;
 
-
-
+  public var ListaEstudantes: TObjectList<TEstudante>;
   end;
 
-var
-  FormEstudantes: TFormEstudantes;
 
 implementation
 
 {$R *.dfm}
 uses uDB;
-procedure TFormEstudantes.AdiconarClick(Sender: TObject);
-var Estudante: TEstudante;
+
+procedure TFormEstudantes.FormCreate(Sender: TObject);
 begin
-   InserirEstudante(Estudante);
+  CriarLista;
+end;
+
+procedure TFormEstudantes.AdiconarClick(Sender: TObject);
+var Estudante : TEstudante;
+begin
+  InserirEstudante(Estudante);
 end;
 
 procedure TFormEstudantes.CriarLista;
 begin
-     ListaEstudantes := TObjectList<TEstudante>.Create;
+  ListaEstudantes := TObjectList<TEstudante>.Create;
 end;
 
 procedure TFormEstudantes.InserirEstudante(Estudante: TEstudante);
- var
-  id, nome, lista: String;
-
-
+var
+  id, nome: String;
   Insert: TEstudante;
-
 begin
+  try
+    nome := EditNome.Text;
 
-      try
-  begin
-   id := EditCodigo.Text;
-  nome := EditNome.Text;
+    DataModule1.FDQueryEstudante.SQL.Text :=
+      'INSERT INTO estudantes (nome) VALUES (' + QuotedStr(nome) + ') returning id';
+    DataModule1.FDQueryEstudante.Open;
 
-  DataModule1.FDQueryEstudante.SQL.Text := 'INSERT INTO estudantes (nome) VALUES ('+ QuotedStr(nome) + ') returning id';
-  DataModule1.FDQueryEstudante.Open;
-   Insert := TEstudante.Create(nome, DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
-   ListaEstudantes.add(Insert);
-   DataModule1.FDQueryEstudante.Next;
+    Insert := TEstudante.Create(nome, DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
+    ListaEstudantes.Add(Insert);
+    DataModule1.FDQueryEstudante.Next;
 
-  end;
-     ShowMessage('Estudante Adicionado Com Sucesso');
-     FormEstudantes.Close;
+    ShowMessage('Estudante Adicionado Com Sucesso');
+
+    self.Close();
 
   except
     on E: Exception do
-    begin
-      if Pos('PRIMARY KEY', UpperCase(E.Message)) > 0 then
-        ShowMessage('Erro: Já existe um estudante com esse código (ID).')
-      else
-        ShowMessage('Erro: Já existe um estudante com esse código (ID).');
-    end;
+      ShowMessage('Erro: ' + E.Message);
   end;
 end;
+
 
 end.
 

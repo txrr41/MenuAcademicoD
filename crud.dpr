@@ -10,7 +10,6 @@ uses
   uMatricula in 'uMatricula.pas',
   uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes},
   uDB in 'uDB.pas' {DataModule1: TDataModule},
-  uDeletarEstud in 'uDeletarEstud.pas' {FormDeletar},
   uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes};
 
 {$R *.res}
@@ -19,9 +18,8 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TFormEstudantes, FormEstudantes);
   Application.CreateForm(TDataModule1, DataModule1);
-  Application.CreateForm(TFormDeletar, FormDeletar);
+  Application.CreateForm(TFormEstudantes, FormEstudantes);
   Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
   Application.Run;
 end.

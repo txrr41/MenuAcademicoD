@@ -10,12 +10,13 @@ object FormEstudantes: TFormEstudantes
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Panel1: TPanel
-    Left = 160
-    Top = 88
+    Left = 144
+    Top = 72
     Width = 329
-    Height = 257
+    Height = 209
     TabOrder = 0
     object Label1: TLabel
       Left = 64
@@ -30,41 +31,27 @@ object FormEstudantes: TFormEstudantes
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 64
-      Top = 75
-      Width = 39
-      Height = 15
-      Caption = 'Codigo'
-    end
     object Label3: TLabel
       Left = 64
-      Top = 131
+      Top = 83
       Width = 33
       Height = 15
       Caption = 'Nome'
     end
-    object EditCodigo: TEdit
+    object EditNome: TEdit
       Left = 64
-      Top = 96
+      Top = 104
       Width = 201
       Height = 23
       TabOrder = 0
     end
-    object EditNome: TEdit
-      Left = 64
-      Top = 152
-      Width = 201
-      Height = 23
-      TabOrder = 1
-    end
     object Adiconar: TButton
       Left = 120
-      Top = 205
+      Top = 149
       Width = 75
       Height = 25
       Caption = 'Adicionar'
-      TabOrder = 2
+      TabOrder = 1
       OnClick = AdiconarClick
     end
   end
