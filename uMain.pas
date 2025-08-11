@@ -32,6 +32,7 @@ type
     procedure EditarEstudantesClick(Sender: TObject);
     procedure ListarProfessorClick(Sender: TObject);
     procedure AdicionarProfessorClick(Sender: TObject);
+    procedure DeletarProfessorClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,6 +40,7 @@ type
      procedure ListarEstudante(Estudante: TEstudante);
      procedure AdicionarEstudante(Estudante: TEstudante);
      procedure ListarProfessores(Professor: TProfessor);
+      procedure DeletarProfessores(Professor: TProfessor);
   end;
 
 var
@@ -107,6 +109,40 @@ begin
      DeletarEstudante(Estudante);
 end;
 
+
+procedure TForm2.DeletarProfessorClick(Sender: TObject);
+var
+Professor: TProfessor;
+begin
+    DeletarProfessores(Professor);
+end;
+
+procedure TForm2.DeletarProfessores(Professor: TProfessor);
+var
+  nome: string;
+  id: Integer;
+  cpf: String;
+  confirmacao: Integer;
+begin
+  if ListBoxProfessores.ItemIndex = -1 then
+  begin
+    ShowMessage('Selecione um professor para deletar.');
+    Exit;
+  end;
+
+
+  nome := ListBoxProfessores.Items[ListBoxProfessores.ItemIndex];
+  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+
+  confirmacao := MessageDlg('Deseja realmente excluir este professor?', mtConfirmation, [mbYes, mbNo], 0);
+  if confirmacao = mrYes then
+  begin
+    uProfessor.TProfessor.DeletarProfessor(id, nome, cpf);
+    ShowMessage('Professor deletado com sucesso!');
+
+    ListarProfessorClick(nil); // Recarrega a listagem
+  end;
+end;
 
 procedure TForm2.DeletarEstudante(Estudante: TEstudante);
     var

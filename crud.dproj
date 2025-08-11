@@ -127,6 +127,10 @@
             <Form>Form2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uDB.pas">
+            <Form>DataModule1</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="uEstudante.pas"/>
         <DCCReference Include="uProfessor.pas"/>
         <DCCReference Include="uDisciplina.pas"/>
@@ -135,11 +139,6 @@
         <DCCReference Include="uMenuEstudantes.pas">
             <Form>FormEstudantes</Form>
             <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="uDB.pas">
-            <Form>DataModule1</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="uEditarEstud.pas">
             <Form>FormEditarEstudantes</Form>

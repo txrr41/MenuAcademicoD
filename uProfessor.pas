@@ -14,6 +14,7 @@ public
     function GetCpf: String;
     procedure SetCpf (aCpf: String);
     class procedure ListarProfessor; static;
+    class procedure DeletarProfessor (id: Integer; nome: String; cpf: String); static;
 
     constructor Create(aNome: String; aCodigo: Integer; aCpf: String);
 private
@@ -28,6 +29,13 @@ begin
    Self.nome := aNome;
    Self.codigo := aCodigo;
    Self.Cpf := aCpf;
+end;
+
+class procedure TProfessor.DeletarProfessor(id: Integer; nome, cpf: String);
+begin
+    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE professores SET ativo = false WHERE id = :id';
+    DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := id;
+    DataModule1.FDQueryEstudante.ExecSQL;
 end;
 
 function TProfessor.GetCodigo: Integer;

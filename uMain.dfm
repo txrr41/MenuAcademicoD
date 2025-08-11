@@ -102,6 +102,7 @@ object Form2: TForm2
         Height = 26
         Caption = 'Deletar'
         TabOrder = 0
+        OnClick = DeletarProfessorClick
       end
       object ListarProfessor: TButton
         Left = 211
