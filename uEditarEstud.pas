@@ -15,7 +15,7 @@ type
     Adiconar: TButton;
     procedure AdiconarClick(Sender: TObject);
     private
-  FIdEstudante: Integer;
+   FIdEstudante: Integer;
 
   private
     { Private declarations }

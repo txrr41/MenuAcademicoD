@@ -10,9 +10,9 @@ uses
   uTurma in 'uTurma.pas',
   uMatricula in 'uMatricula.pas',
   uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes},
-
   uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes},
-  uAdicionarProfessor in 'uAdicionarProfessor.pas' {FormProfessores};
+  uAdicionarProfessor in 'uAdicionarProfessor.pas' {FormProfessores},
+  uEditarProf in 'uEditarProf.pas' {FormEditarProfessores};
 
 {$R *.res}
 
@@ -24,5 +24,6 @@ begin
   Application.CreateForm(TFormEstudantes, FormEstudantes);
   Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
   Application.CreateForm(TFormProfessores, FormProfessores);
+  Application.CreateForm(TFormEditarProfessores, FormEditarProfessores);
   Application.Run;
 end.

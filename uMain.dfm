@@ -120,6 +120,7 @@ object Form2: TForm2
         Height = 26
         Caption = 'Editar'
         TabOrder = 2
+        OnClick = EditarProfessorClick
       end
       object AdicionarProfessor: TButton
         Left = 463

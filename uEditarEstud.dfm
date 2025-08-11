@@ -15,7 +15,7 @@ object FormEditarEstudantes: TFormEditarEstudantes
     Left = 160
     Top = 88
     Width = 337
-    Height = 217
+    Height = 201
     TabOrder = 0
     object Label1: TLabel
       Left = 80
@@ -45,8 +45,8 @@ object FormEditarEstudantes: TFormEditarEstudantes
       TabOrder = 0
     end
     object Adiconar: TButton
-      Left = 112
-      Top = 149
+      Left = 128
+      Top = 157
       Width = 75
       Height = 25
       Caption = 'Adicionar'

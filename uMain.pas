@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor, uEditarProf;
 
 type
   TForm2 = class(TForm)
@@ -33,12 +33,12 @@ type
     procedure ListarProfessorClick(Sender: TObject);
     procedure AdicionarProfessorClick(Sender: TObject);
     procedure DeletarProfessorClick(Sender: TObject);
+    procedure EditarProfessorClick(Sender: TObject);
   private
     { Private declarations }
   public
      procedure DeletarEstudante(Estudante: TEstudante);
      procedure ListarEstudante(Estudante: TEstudante);
-     procedure AdicionarEstudante(Estudante: TEstudante);
      procedure ListarProfessores(Professor: TProfessor);
       procedure DeletarProfessores(Professor: TProfessor);
   end;
@@ -68,12 +68,6 @@ begin
  FormProfessores.ShowModal;
 end;
 
-procedure TForm2.AdicionarEstudante(Estudante: TEstudante);
-
-begin
-
-end;
-
 
 procedure TForm2.EditarEstudantesClick(Sender: TObject);
 
@@ -101,6 +95,31 @@ begin
   ListarEstudantesClick(nil)
 end;
 
+
+procedure TForm2.EditarProfessorClick(Sender: TObject);
+  VAR
+  Nome, cpf: string;
+  id: Integer;
+
+begin
+  if ListBoxProfessores.ItemIndex = -1 then
+  begin
+    ShowMessage('Selecione um professor para editar.');
+    Exit;
+  end;
+
+  // Extrai o ID do item selecionado (ex: "3 - Luis")
+ Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+ id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+
+  // Cria e abre o formulário de edição
+  FormEditarProfessores := TFormEditarProfessores.Create(Self);
+  FormEditarProfessores.CarregarProfessores(id); // Método que carrega os dados
+  FormEditarProfessores.ShowModal;
+  FormEditarProfessores.Free;
+
+  ListarProfessorClick(nil)
+end;
 
 procedure TForm2.DeletarEstudantesClick(Sender: TObject);
 
@@ -199,7 +218,7 @@ begin
 
     end;
      for var prof in FormProfessores.listaprofessores do begin
-      ListBoxProfessores.AddItem(Prof.GetCodigo.ToString + ' - ' + ' Professor (a) ' + prof.GetNome + 'Cpf:' + prof.GetCpf, nil);
+      ListBoxProfessores.AddItem(Prof.GetCodigo.ToString + ' - '+ 'Professor(a): ' + prof.GetNome + ' Cpf: ' + prof.GetCpf, nil);
 
     end;
   except
