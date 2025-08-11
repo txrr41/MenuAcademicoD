@@ -4,36 +4,46 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor;
 
 type
   TForm2 = class(TForm)
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
+    Label1: TLabel;
+    AdicionarEstudantes: TButton;
+    DeletarEstudantes: TButton;
+    ListarEstudantes: TButton;
+    EditarEstudantes: TButton;
+    ListBoxEstudantes: TListBox;
     TabSheet2: TTabSheet;
+    DeletarProfessor: TButton;
+    ListarProfessor: TButton;
+    EditarProfessor: TButton;
+    AdicionarProfessor: TButton;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    Label1: TLabel;
-    Adicionar: TButton;
-    Deletar: TButton;
-    Listar: TButton;
-    Atualizar: TButton;
-    ListBoxEstudantes: TListBox;
-    procedure AdicionarClick(Sender: TObject);
-    procedure ListarClick(Sender: TObject);
-    procedure DeletarClick(Sender: TObject);
-    procedure AtualizarClick(Sender: TObject);
+    Label2: TLabel;
+    ListBoxProfessores: TListBox;
+    procedure AdicionarEstudantesClick(Sender: TObject);
+    procedure ListarEstudantesClick(Sender: TObject);
+    procedure DeletarEstudantesClick(Sender: TObject);
+    procedure EditarEstudantesClick(Sender: TObject);
+    procedure ListarProfessorClick(Sender: TObject);
+    procedure AdicionarProfessorClick(Sender: TObject);
   private
     { Private declarations }
   public
      procedure DeletarEstudante(Estudante: TEstudante);
      procedure ListarEstudante(Estudante: TEstudante);
      procedure AdicionarEstudante(Estudante: TEstudante);
+     procedure ListarProfessores(Professor: TProfessor);
   end;
 
 var
   FormEstudantes: TFormEstudantes;
+  FormProfessores: TFormProfessores;
   Form2: TForm2;
 
 
@@ -45,10 +55,15 @@ implementation
 
 {$R *.dfm}
 
-procedure TForm2.AdicionarClick(Sender: TObject);
+procedure TForm2.AdicionarEstudantesClick(Sender: TObject);
 begin
     FormEstudantes.ShowModal;
 
+end;
+
+procedure TForm2.AdicionarProfessorClick(Sender: TObject);
+begin
+ FormProfessores.ShowModal;
 end;
 
 procedure TForm2.AdicionarEstudante(Estudante: TEstudante);
@@ -58,7 +73,7 @@ begin
 end;
 
 
-procedure TForm2.AtualizarClick(Sender: TObject);
+procedure TForm2.EditarEstudantesClick(Sender: TObject);
 
   VAR
   Nome: string;
@@ -72,7 +87,7 @@ begin
   end;
 
   // Extrai o ID do item selecionado (ex: "3 - Luis")
-Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+ Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
 
   // Cria e abre o formulário de edição
@@ -81,11 +96,11 @@ Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
   FormEditarEstudantes.ShowModal;
   FormEditarEstudantes.Free;
 
-  ListarClick(nil)
+  ListarEstudantesClick(nil)
 end;
 
 
-procedure TForm2.DeletarClick(Sender: TObject);
+procedure TForm2.DeletarEstudantesClick(Sender: TObject);
 
 var Estudante : TEstudante;
 begin
@@ -93,11 +108,10 @@ begin
 end;
 
 
-
 procedure TForm2.DeletarEstudante(Estudante: TEstudante);
     var
-  idStr: string;
-  idEstudante: Integer;
+  nome: string;
+  id: Integer;
   confirmacao: Integer;
 begin
   if ListBoxEstudantes.ItemIndex = -1 then
@@ -107,42 +121,72 @@ begin
   end;
 
 
-  idStr := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
-  idEstudante := StrToInt(Copy(idStr, 1, Pos(' -', idStr) - 1));
+  nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
 
   confirmacao := MessageDlg('Deseja realmente excluir este estudante?', mtConfirmation, [mbYes, mbNo], 0);
   if confirmacao = mrYes then
   begin
-    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = :id';
-    DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := idEstudante;
-    DataModule1.FDQueryEstudante.ExecSQL;
-
+    uEstudante.TEstudante.DeletarEstudante(id, nome);
     ShowMessage('Estudante deletado com sucesso!');
 
-    ListarClick(nil); // Recarrega a listagem
+    ListarEstudantesClick(nil); // Recarrega a listagem
   end;
 end;
 
-procedure TForm2.ListarClick(Sender: TObject);
+procedure TForm2.ListarEstudantesClick(Sender: TObject);
 var
 estudante: TEstudante;
 begin
    ListarEstudante(Estudante);
+end;
+
+
+procedure TForm2.ListarProfessores(Professor: TProfessor);
+begin
+  ListBoxProfessores.Items.Clear;
+  FormProfessores.ListaProfessores.Clear;
+
+  try
+   uProfessor.TProfessor.ListarProfessor;
+
+    while not DataModule1.FDQueryEstudante.Eof do
+    begin
+
+
+
+      Professor := TProfessor.Create(DataModule1.FDQueryEstudante.FieldByName('nome').AsString,DataModule1.FDQueryEstudante.FieldByName('id').AsInteger, DataModule1.FDQueryEstudante.FieldByName('cpf').AsString);
+      FormProfessores.ListaProfessores.add(Professor);
+      DataModule1.FDQueryEstudante.Next;
+
+
+
+    end;
+     for var prof in FormProfessores.listaprofessores do begin
+      ListBoxProfessores.AddItem(Prof.GetCodigo.ToString + ' - ' + ' Professor (a) ' + prof.GetNome + 'Cpf:' + prof.GetCpf, nil);
+
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao listar professores: ' + E.Message);
   end;
 
+end;
 
+procedure TForm2.ListarProfessorClick(Sender: TObject);
+var
+Professor: TProfessor;
+begin
+   ListarProfessores(Professor);
+  end;
 
 procedure TForm2.ListarEstudante(Estudante: TEstudante);
-
 begin
   ListBoxEstudantes.Items.Clear;
   FormEstudantes.ListaEstudantes.Clear;
 
-
   try
-    DataModule1.FDQueryEstudante.Close;
-    DataModule1.FDQueryEstudante.SQL.Text := 'SELECT * FROM estudantes WHERE ativo = true';
-    DataModule1.FDQueryEstudante.Open;
+   uEstudante.TEstudante.ListarEstudante;
 
     while not DataModule1.FDQueryEstudante.Eof do
     begin

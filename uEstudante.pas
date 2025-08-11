@@ -2,7 +2,7 @@ unit uEstudante;
 
 interface
 
-uses System.Generics.Collections;
+uses System.Generics.Collections, uDB;
 
 Type
   TEstudante = class(TObject)
@@ -13,6 +13,8 @@ Type
     procedure SetNome(aNome: String);
     function GetCodigo: Integer;
     procedure SetCodigo(aCodigo: Integer);
+    class procedure DeletarEstudante (id: Integer; nome: String); static;
+    class procedure ListarEstudante; static;
   private
     nome: String;
     codigo: Integer;
@@ -27,6 +29,17 @@ begin
   Self.codigo := aCodigo;
 end;
 
+class procedure TEstudante.DeletarEstudante(id: Integer; nome: String);
+begin
+
+    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = :id';
+    DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := id;
+    DataModule1.FDQueryEstudante.ExecSQL;
+
+
+
+end;
+
 function TEstudante.GetCodigo: Integer;
 begin
   result := Self.codigo;
@@ -35,6 +48,13 @@ end;
 function TEstudante.GetNome: String;
 begin
   result := Self.nome;
+end;
+
+class procedure TEstudante.ListarEstudante;
+begin
+    DataModule1.FDQueryEstudante.Close;
+    DataModule1.FDQueryEstudante.SQL.Text := 'SELECT * FROM estudantes WHERE ativo = true';
+    DataModule1.FDQueryEstudante.Open;
 end;
 
 procedure TEstudante.SetCodigo(aCodigo: Integer);

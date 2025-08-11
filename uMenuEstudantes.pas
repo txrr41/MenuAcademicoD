@@ -16,11 +16,11 @@ type
     Adiconar: TButton;
 
     procedure AdiconarClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject); // Evento do formulário
+    procedure FormCreate(Sender: TObject);
     procedure InserirEstudante(Estudante: TEstudante);
     procedure CriarLista;
 
-  public var ListaEstudantes: TObjectList<TEstudante>;
+    public var ListaEstudantes: TObjectList<TEstudante>;
   end;
 
 

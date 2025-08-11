@@ -145,6 +145,10 @@
             <Form>FormEditarEstudantes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uAdicionarProfessor.pas">
+            <Form>FormProfessores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

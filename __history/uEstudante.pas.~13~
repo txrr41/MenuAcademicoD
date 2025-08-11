@@ -1,0 +1,62 @@
+unit uEstudante;
+
+interface
+
+uses System.Generics.Collections, uDB;
+
+Type
+  TEstudante = class(TObject)
+  public
+
+    constructor Create(aNome: String; aCodigo: Integer);
+    function GetNome: String;
+    procedure SetNome(aNome: String);
+    function GetCodigo: Integer;
+    procedure SetCodigo(aCodigo: Integer);
+    class procedure DeletarEstudante (id: Integer; nome: String); static;
+  private
+    nome: String;
+    codigo: Integer;
+
+  end;
+
+implementation
+
+constructor TEstudante.Create(aNome: String; aCodigo: Integer);
+begin
+  Self.nome := aNome;
+  Self.codigo := aCodigo;
+end;
+
+class procedure TEstudante.DeletarEstudante(id: Integer; nome: String);
+begin
+
+    DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET ativo = false WHERE id = :id';
+    DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := id;
+    DataModule1.FDQueryEstudante.ExecSQL;
+
+
+
+end;
+
+function TEstudante.GetCodigo: Integer;
+begin
+  result := Self.codigo;
+end;
+
+function TEstudante.GetNome: String;
+begin
+  result := Self.nome;
+end;
+
+procedure TEstudante.SetCodigo(aCodigo: Integer);
+begin
+  Self.codigo := aCodigo;
+end;
+
+procedure TEstudante.SetNome(aNome: String);
+begin
+  Self.nome := aNome;
+end;
+
+end.

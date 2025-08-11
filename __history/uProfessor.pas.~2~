@@ -1,0 +1,63 @@
+unit uProfessor;
+
+interface
+Type TProfessor = class(TObject)
+public
+    function GetNome: String;
+    procedure SetNome(aNome: String);
+    function GetCodigo: Integer;
+    procedure SetCodigo(aCodigo: Integer);
+    function GetCpf: Integer;
+    procedure SetCpf (aCpf: Integer);
+    procedure InserirProfessor (Professor: TProfessor);
+    constructor Create(aNome: String; aCodigo: Integer; aCpf: Integer);
+private
+ nome: String;
+ codigo: Integer;
+ cpf: Integer;
+end;
+
+implementation
+constructor  TProfessor.Create(aNome: String; aCodigo: Integer; aCpf: Integer);
+begin
+   Self.nome := aNome;
+   Self.codigo := aCodigo;
+   Self.Cpf := aCpf;
+end;
+
+function TProfessor.GetCodigo: Integer;
+begin
+   result := Self.Codigo;
+end;
+
+function TProfessor.GetCpf: Integer;
+begin
+  result := Self.Cpf;
+end;
+
+function TProfessor.GetNome: String;
+begin
+   result := Self.Nome;
+end;
+
+procedure TProfessor.InserirProfessor(Professor: TProfessor);
+begin
+
+end;
+
+procedure TProfessor.SetCodigo(aCodigo: Integer);
+begin
+    Self.Codigo := aCodigo;
+end;
+
+procedure TProfessor.SetCpf(aCpf: Integer);
+begin
+    Self.Cpf := aCpf;
+end;
+
+procedure TProfessor.SetNome(aNome: String);
+begin
+   Self.Nome := aNome;
+end;
+
+end.

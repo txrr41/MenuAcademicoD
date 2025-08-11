@@ -10,7 +10,8 @@ uses
   uMatricula in 'uMatricula.pas',
   uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes},
   uDB in 'uDB.pas' {DataModule1: TDataModule},
-  uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes};
+  uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes},
+  uAdicionarProfessor in 'uAdicionarProfessor.pas' {FormProfessores};
 
 {$R *.res}
 
@@ -21,5 +22,6 @@ begin
   Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TFormEstudantes, FormEstudantes);
   Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
+  Application.CreateForm(TFormProfessores, FormProfessores);
   Application.Run;
 end.

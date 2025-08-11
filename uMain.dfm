@@ -16,7 +16,7 @@ object Form2: TForm2
     Top = 0
     Width = 657
     Height = 441
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     object TabSheet1: TTabSheet
@@ -34,41 +34,41 @@ object Form2: TForm2
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Adicionar: TButton
+      object AdicionarEstudantes: TButton
         Left = 455
         Top = 382
         Width = 89
         Height = 26
         Caption = 'Adicionar'
         TabOrder = 0
-        OnClick = AdicionarClick
+        OnClick = AdicionarEstudantesClick
       end
-      object Deletar: TButton
+      object DeletarEstudantes: TButton
         Left = 104
         Top = 382
         Width = 89
         Height = 26
         Caption = 'Deletar'
         TabOrder = 1
-        OnClick = DeletarClick
+        OnClick = DeletarEstudantesClick
       end
-      object Listar: TButton
+      object ListarEstudantes: TButton
         Left = 208
         Top = 382
         Width = 97
         Height = 26
         Caption = 'Listar'
         TabOrder = 2
-        OnClick = ListarClick
+        OnClick = ListarEstudantesClick
       end
-      object Atualizar: TButton
+      object EditarEstudantes: TButton
         Left = 348
         Top = 382
         Width = 89
         Height = 26
         Caption = 'Editar'
         TabOrder = 3
-        OnClick = AtualizarClick
+        OnClick = EditarEstudantesClick
       end
       object ListBoxEstudantes: TListBox
         Left = 104
@@ -82,6 +82,61 @@ object Form2: TForm2
     object TabSheet2: TTabSheet
       Caption = 'Professores'
       ImageIndex = 1
+      object Label2: TLabel
+        Left = 211
+        Top = 3
+        Width = 224
+        Height = 29
+        Caption = 'Menu Professores'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -23
+        Font.Name = 'Source Code Pro'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object DeletarProfessor: TButton
+        Left = 96
+        Top = 382
+        Width = 89
+        Height = 26
+        Caption = 'Deletar'
+        TabOrder = 0
+      end
+      object ListarProfessor: TButton
+        Left = 211
+        Top = 382
+        Width = 97
+        Height = 26
+        Caption = 'Listar'
+        TabOrder = 1
+        OnClick = ListarProfessorClick
+      end
+      object EditarProfessor: TButton
+        Left = 356
+        Top = 382
+        Width = 89
+        Height = 26
+        Caption = 'Editar'
+        TabOrder = 2
+      end
+      object AdicionarProfessor: TButton
+        Left = 463
+        Top = 382
+        Width = 89
+        Height = 26
+        Caption = 'Adicionar'
+        TabOrder = 3
+        OnClick = AdicionarProfessorClick
+      end
+      object ListBoxProfessores: TListBox
+        Left = 112
+        Top = 38
+        Width = 440
+        Height = 329
+        ItemHeight = 15
+        TabOrder = 4
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Disciplinas'
