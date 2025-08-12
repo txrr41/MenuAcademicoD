@@ -1,0 +1,71 @@
+unit uAdicionarDisciplina;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, System.Generics.Collections, uDisciplina, uDB;
+
+type
+  TFormDisciplinas = class(TForm)
+    Panel1: TPanel;
+    Label1: TLabel;
+    Label3: TLabel;
+    EditNome: TEdit;
+    Adiconar: TButton;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+
+     procedure InserirDisciplina(Disciplina: TDisciplina);
+     procedure CriarLista;
+     public var ListaDisciplinas: TObjectList<TDisciplina>;
+  end;
+
+var
+  FormDisciplinas: TFormDisciplinas;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm1 }
+
+procedure TFormDisciplinas.CriarLista;
+begin
+ ListaDisciplinas := TObjectList<TDisciplina>.Create;
+end;
+
+procedure TFormDisciplinas.FormCreate(Sender: TObject);
+begin
+  CriarLista;
+end;
+
+procedure TFormDisciplinas.InserirDisciplina(Disciplina: TDisciplina);
+var
+  id, nome: String;
+  Insert: TDisciplina;
+begin
+  try
+    nome := EditNome.Text;
+
+    DataModule1.FDQueryEstudante.SQL.Text :=
+      'INSERT INTO disciplinas (nome) VALUES (' + QuotedStr(nome) + ') returning id';
+    DataModule1.FDQueryEstudante.Open;
+
+    Insert := TDisciplina.Create(nome, DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
+    ListaDisciplinas.Add(Insert);
+    DataModule1.FDQueryEstudante.Next;
+
+    ShowMessage('Disciplina Adicionada Com Sucesso');
+
+    self.Close();
+
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+end;
+
+end.

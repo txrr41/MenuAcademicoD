@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 441
+  ClientHeight = 440
   ClientWidth = 657
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,10 +15,11 @@ object Form2: TForm2
     Left = 0
     Top = 0
     Width = 657
-    Height = 441
-    ActivePage = TabSheet2
+    Height = 440
+    ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
+    ExplicitHeight = 441
     object TabSheet1: TTabSheet
       Caption = 'Estudantes'
       object Label1: TLabel
@@ -133,7 +134,7 @@ object Form2: TForm2
       end
       object ListBoxProfessores: TListBox
         Left = 112
-        Top = 38
+        Top = 30
         Width = 440
         Height = 329
         ItemHeight = 15
@@ -143,6 +144,61 @@ object Form2: TForm2
     object TabSheet3: TTabSheet
       Caption = 'Disciplinas'
       ImageIndex = 2
+      object Label3: TLabel
+        Left = 219
+        Top = 11
+        Width = 224
+        Height = 29
+        Caption = 'Menu Professores'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -23
+        Font.Name = 'Source Code Pro'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object EditarDisciplina: TButton
+        Left = 364
+        Top = 385
+        Width = 89
+        Height = 26
+        Caption = 'Editar'
+        TabOrder = 0
+      end
+      object AdicionarDisciplina: TButton
+        Left = 471
+        Top = 385
+        Width = 89
+        Height = 26
+        Caption = 'Adicionar'
+        TabOrder = 1
+        OnClick = AdicionarDisciplinaClick
+      end
+      object ListBoxDisciplinas: TListBox
+        Left = 120
+        Top = 38
+        Width = 440
+        Height = 329
+        ItemHeight = 15
+        TabOrder = 2
+      end
+      object DeletarDisciplina: TButton
+        Left = 104
+        Top = 385
+        Width = 89
+        Height = 26
+        Caption = 'Deletar'
+        TabOrder = 3
+        OnClick = DeletarDisciplinaClick
+      end
+      object ListarDisciplina: TButton
+        Left = 219
+        Top = 385
+        Width = 97
+        Height = 26
+        Caption = 'Listar'
+        TabOrder = 4
+      end
     end
     object TabSheet4: TTabSheet
       Caption = 'Turmas'

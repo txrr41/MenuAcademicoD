@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor, uEditarProf;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor, uEditarProf, uDisciplina, uAdicionarDisciplina;
 
 type
   TForm2 = class(TForm)
@@ -26,28 +26,39 @@ type
     TabSheet5: TTabSheet;
     Label2: TLabel;
     ListBoxProfessores: TListBox;
+    EditarDisciplina: TButton;
+    AdicionarDisciplina: TButton;
+    ListBoxDisciplinas: TListBox;
+    Label3: TLabel;
+    DeletarDisciplina: TButton;
+    ListarDisciplina: TButton;
     procedure AdicionarEstudantesClick(Sender: TObject);
     procedure ListarEstudantesClick(Sender: TObject);
     procedure DeletarEstudantesClick(Sender: TObject);
     procedure EditarEstudantesClick(Sender: TObject);
-    procedure ListarProfessorClick(Sender: TObject);
     procedure AdicionarProfessorClick(Sender: TObject);
     procedure DeletarProfessorClick(Sender: TObject);
     procedure EditarProfessorClick(Sender: TObject);
+    procedure ListarProfessorClick(Sender: TObject);
+    procedure DeletarDisciplinaClick(Sender: TObject);
+    procedure ListarDisciplinasClick(Sender: TObject);
+    procedure AdicionarDisciplinaClick(Sender: TObject);
   private
     { Private declarations }
   public
      procedure DeletarEstudante(Estudante: TEstudante);
      procedure ListarEstudante(Estudante: TEstudante);
      procedure ListarProfessores(Professor: TProfessor);
-      procedure DeletarProfessores(Professor: TProfessor);
+     procedure DeletarProfessores(Professor: TProfessor);
+     procedure DeletarDisciplinas (Disciplina: TDisciplina);
+
   end;
 
 var
   FormEstudantes: TFormEstudantes;
   FormProfessores: TFormProfessores;
   Form2: TForm2;
-
+  FormDisciplinas: TFormDisciplinas;
 
 
 implementation
@@ -57,10 +68,15 @@ implementation
 
 {$R *.dfm}
 
+procedure TForm2.AdicionarDisciplinaClick(Sender: TObject);
+begin
+  var f : TFormDisciplinas := TFormDisciplinas.Create(self);
+  f.ShowModal;
+end;
+
 procedure TForm2.AdicionarEstudantesClick(Sender: TObject);
 begin
     FormEstudantes.ShowModal;
-
 end;
 
 procedure TForm2.AdicionarProfessorClick(Sender: TObject);
@@ -68,6 +84,11 @@ begin
  FormProfessores.ShowModal;
 end;
 
+procedure TForm2.DeletarDisciplinaClick(Sender: TObject);
+var Disciplina : TDisciplina;
+begin
+  DeletarDisciplinas(Disciplina);
+end;
 
 procedure TForm2.EditarEstudantesClick(Sender: TObject);
 
@@ -109,7 +130,7 @@ begin
   end;
 
   // Extrai o ID do item selecionado (ex: "3 - Luis")
- Nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
+ Nome := ListBoxProfessores.Items[ListBoxProfessores.ItemIndex];
  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
 
   // Cria e abre o formulário de edição
@@ -163,6 +184,34 @@ begin
   end;
 end;
 
+
+
+procedure TForm2.DeletarDisciplinas(Disciplina: TDisciplina);
+  var
+  nome: string;
+  id: Integer;
+  confirmacao: Integer;
+begin
+  if ListBoxEstudantes.ItemIndex = -1 then
+  begin
+    ShowMessage('Selecione um estudante para deletar.');
+    Exit;
+  end;
+
+
+  nome := ListBoxDisciplinas.Items[ListBoxDisciplinas.ItemIndex];
+  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+
+  confirmacao := MessageDlg('Deseja realmente excluir esta disciplina?', mtConfirmation, [mbYes, mbNo], 0);
+  if confirmacao = mrYes then
+  begin
+    uDisciplina.TDisciplina.DeletarDisciplina(id, nome);
+    ShowMessage('Disciplina deletada com sucesso!');
+
+    ListarDisciplinasClick(nil); // Recarrega a listagem
+  end;
+end;
+
 procedure TForm2.DeletarEstudante(Estudante: TEstudante);
     var
   nome: string;
@@ -196,6 +245,12 @@ begin
    ListarEstudante(Estudante);
 end;
 
+procedure TForm2.ListarProfessorClick(Sender: TObject);
+var
+Professor: TProfessor;
+begin
+   ListarProfessores(Professor);
+end;
 
 procedure TForm2.ListarProfessores(Professor: TProfessor);
 begin
@@ -228,12 +283,39 @@ begin
 
 end;
 
-procedure TForm2.ListarProfessorClick(Sender: TObject);
-var
-Professor: TProfessor;
+
+
+
+procedure TForm2.ListarDisciplinasClick(Sender: TObject);
+var Disciplina : TDisciplina;
 begin
-   ListarProfessores(Professor);
+  ListBoxDisciplinas.Items.Clear;
+  FormDisciplinas.ListaDisciplinas.Clear;
+
+  try
+   uDisciplina.TDisciplina.ListarDisciplina;
+
+    while not DataModule1.FDQueryEstudante.Eof do
+    begin
+
+
+
+      Disciplina := TDisciplina.Create(DataModule1.FDQueryEstudante.FieldByName('nome').AsString,DataModule1.FDQueryEstudante.FieldByName('id').AsInteger);
+      FormDisciplinas.ListaDisciplinas.add(Disciplina);
+      DataModule1.FDQueryEstudante.Next;
+
+
+
+    end;
+     for var discip in FormDisciplinas.listadisciplinas do begin
+      ListBoxDisciplinas.AddItem(discip.GetCodigo.ToString + ' - ' + discip.GetNome, nil);
+    end;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao listar estudantes: ' + E.Message);
   end;
+
+end;
 
 procedure TForm2.ListarEstudante(Estudante: TEstudante);
 begin

@@ -12,7 +12,8 @@ uses
   uMenuEstudantes in 'uMenuEstudantes.pas' {FormEstudantes},
   uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes},
   uAdicionarProfessor in 'uAdicionarProfessor.pas' {FormProfessores},
-  uEditarProf in 'uEditarProf.pas' {FormEditarProfessores};
+  uEditarProf in 'uEditarProf.pas' {FormEditarProfessores},
+  uAdicionarDisciplina in 'uAdicionarDisciplina.pas' {FormDisciplinas};
 
 {$R *.res}
 
@@ -25,5 +26,6 @@ begin
   Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
   Application.CreateForm(TFormProfessores, FormProfessores);
   Application.CreateForm(TFormEditarProfessores, FormEditarProfessores);
+  Application.CreateForm(TFormDisciplinas, FormDisciplinas);
   Application.Run;
 end.
