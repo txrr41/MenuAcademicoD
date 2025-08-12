@@ -156,6 +156,10 @@
             <Form>FormDisciplinas</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uEditarDisciplina.pas">
+            <Form>FormEditarDisciplinas</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

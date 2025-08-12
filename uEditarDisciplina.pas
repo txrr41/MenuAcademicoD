@@ -31,7 +31,7 @@ implementation
 
 procedure TFormEditarDisciplinas.CarregarDisciplina(ID: Integer);
 begin
-FId := Id;
+ FId := Id;
 
   DataModule1.FDQueryEstudante.SQL.Text := 'SELECT nome FROM estudantes WHERE id = :id';
   DataModule1.FDQueryEstudante.ParamByName('id').AsInteger := Id;
@@ -42,7 +42,7 @@ end;
 
 procedure TFormEditarDisciplinas.EditarClick(Sender: TObject);
 begin
-DataModule1.FDQueryEstudante.Close;
+  DataModule1.FDQueryEstudante.Close;
   DataModule1.FDQueryEstudante.SQL.Text := 'UPDATE estudantes SET nome = :nome WHERE id = :id';
   DataModule1.FDQueryEstudante.ParamByName('nome').AsString := EditNome.Text;
   DataModule1.FDQueryEstudante.ParamByName('id').AsInteger :=

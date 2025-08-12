@@ -56,7 +56,7 @@ object FormEditarProfessores: TFormEditarProfessores
       Top = 205
       Width = 75
       Height = 25
-      Caption = 'Adicionar'
+      Caption = 'Editar'
       TabOrder = 1
       OnClick = AdiconarClick
     end

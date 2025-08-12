@@ -12,8 +12,8 @@ type
     Label1: TLabel;
     Label3: TLabel;
     EditNome: TEdit;
-    Adiconar: TButton;
-    procedure AdiconarClick(Sender: TObject);
+    Editar: TButton;
+    procedure EditarClick(Sender: TObject);
     private
    FIdEstudante: Integer;
 
@@ -32,7 +32,7 @@ implementation
 
 { TFormEditarEstudantes }
 
-procedure TFormEditarEstudantes.AdiconarClick(Sender: TObject);
+procedure TFormEditarEstudantes.EditarClick(Sender: TObject);
 
 begin
   DataModule1.FDQueryEstudante.Close;

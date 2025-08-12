@@ -14,6 +14,7 @@ type
     EditNome: TEdit;
     Adiconar: TButton;
     procedure FormCreate(Sender: TObject);
+    procedure AdiconarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,6 +32,12 @@ implementation
 {$R *.dfm}
 
 { TForm1 }
+
+procedure TFormDisciplinas.AdiconarClick(Sender: TObject);
+var Disciplina : TDisciplina;
+begin
+       InserirDisciplina(Disciplina);
+end;
 
 procedure TFormDisciplinas.CriarLista;
 begin

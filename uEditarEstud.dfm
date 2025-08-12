@@ -44,14 +44,14 @@ object FormEditarEstudantes: TFormEditarEstudantes
       Height = 23
       TabOrder = 0
     end
-    object Adiconar: TButton
+    object Editar: TButton
       Left = 128
       Top = 157
       Width = 75
       Height = 25
-      Caption = 'Adicionar'
+      Caption = 'Editar'
       TabOrder = 1
-      OnClick = AdiconarClick
+      OnClick = EditarClick
     end
   end
 end

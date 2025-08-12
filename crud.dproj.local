@@ -7,8 +7,8 @@
     <Transaction>2025/08/04 13:50:53.000.751,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
     <Transaction>2025/08/04 13:51:13.000.593,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit6.pas</Transaction>
     <Transaction>2025/08/04 13:51:18.000.498,=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit7.pas</Transaction>
-    <Transaction>2025/08/04 14:01:11.000.941,C:\Users\Auditorio\Documents\CRUD\uMain.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2025/08/04 14:01:11.000.941,C:\Users\Auditorio\Documents\CRUD\uMain.dfm=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2025/08/04 14:01:11.000.941,C:\Users\Auditorio\Documents\CRUD\uMain.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
     <Transaction>2025/08/04 14:01:26.000.247,C:\Users\Auditorio\Documents\CRUD\uEstudante.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
     <Transaction>2025/08/04 14:01:38.000.822,C:\Users\Auditorio\Documents\CRUD\uProfessor.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
     <Transaction>2025/08/04 14:02:11.000.130,C:\Users\Auditorio\Documents\CRUD\uDisciplina.pas=C:\Users\Auditorio\Documents\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
@@ -34,11 +34,14 @@
     <Transaction>2025/08/11 15:00:35.000.300,C:\Users\Auditorio\Documents\CRUD\uAdicionarProfessor.pas=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
     <Transaction>2025/08/11 15:00:35.000.300,C:\Users\Auditorio\Documents\CRUD\uAdicionarProfessor.dfm=C:\Users\Auditorio\Documents\CRUD\Unit1.dfm</Transaction>
     <Transaction>2025/08/11 17:05:46.000.285,=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
-    <Transaction>2025/08/11 17:20:24.000.171,C:\Users\Auditorio\Documents\CRUD\uEditarProf.dfm=C:\Users\Auditorio\Documents\CRUD\Unit1.dfm</Transaction>
     <Transaction>2025/08/11 17:20:24.000.171,C:\Users\Auditorio\Documents\CRUD\uEditarProf.pas=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
+    <Transaction>2025/08/11 17:20:24.000.171,C:\Users\Auditorio\Documents\CRUD\uEditarProf.dfm=C:\Users\Auditorio\Documents\CRUD\Unit1.dfm</Transaction>
     <Transaction>2025/08/12 14:22:02.006,=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
-    <Transaction>2025/08/12 14:41:01.186,C:\Users\Auditorio\Documents\CRUD\uAdicionarDisciplina.pas=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
     <Transaction>2025/08/12 14:41:01.186,C:\Users\Auditorio\Documents\CRUD\uAdicionarDisciplina.dfm=C:\Users\Auditorio\Documents\CRUD\Unit1.dfm</Transaction>
+    <Transaction>2025/08/12 14:41:01.186,C:\Users\Auditorio\Documents\CRUD\uAdicionarDisciplina.pas=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
+    <Transaction>2025/08/12 15:39:13.920,=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
+    <Transaction>2025/08/12 15:56:05.894,C:\Users\Auditorio\Documents\CRUD\uEditarDisciplina.dfm=C:\Users\Auditorio\Documents\CRUD\Unit1.dfm</Transaction>
+    <Transaction>2025/08/12 15:56:05.894,C:\Users\Auditorio\Documents\CRUD\uEditarDisciplina.pas=C:\Users\Auditorio\Documents\CRUD\Unit1.pas</Transaction>
   </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="uAdicionarProfessor.pas"/>
     <File Path="uAdicionarProfessor.dfm"/>
@@ -59,5 +62,7 @@
     <File Path="uTurma.pas"/>
     <File Path="uAdicionarDisciplina.pas"/>
     <File Path="uAdicionarDisciplina.dfm"/>
+    <File Path="uEditarDisciplina.pas"/>
+    <File Path="uEditarDisciplina.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

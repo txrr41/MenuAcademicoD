@@ -13,19 +13,22 @@ uses
   uEditarEstud in 'uEditarEstud.pas' {FormEditarEstudantes},
   uAdicionarProfessor in 'uAdicionarProfessor.pas' {FormProfessores},
   uEditarProf in 'uEditarProf.pas' {FormEditarProfessores},
-  uAdicionarDisciplina in 'uAdicionarDisciplina.pas' {FormDisciplinas};
+  uAdicionarDisciplina in 'uAdicionarDisciplina.pas' {FormDisciplinas},
+  uEditarDisciplina in 'uEditarDisciplina.pas' {FormEditarDisciplinas};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TForm2, Form2);
+
   Application.CreateForm(TFormEstudantes, FormEstudantes);
   Application.CreateForm(TFormEditarEstudantes, FormEditarEstudantes);
   Application.CreateForm(TFormProfessores, FormProfessores);
   Application.CreateForm(TFormEditarProfessores, FormEditarProfessores);
   Application.CreateForm(TFormDisciplinas, FormDisciplinas);
+  Application.CreateForm(TFormEditarDisciplinas, FormEditarDisciplinas);
   Application.Run;
 end.

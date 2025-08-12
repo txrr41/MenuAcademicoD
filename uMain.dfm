@@ -10,6 +10,7 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object PageControl1: TPageControl
     Left = 0
@@ -19,7 +20,7 @@ object Form2: TForm2
     ActivePage = TabSheet3
     Align = alClient
     TabOrder = 0
-    ExplicitHeight = 441
+    ExplicitLeft = -8
     object TabSheet1: TTabSheet
       Caption = 'Estudantes'
       object Label1: TLabel
@@ -164,6 +165,7 @@ object Form2: TForm2
         Height = 26
         Caption = 'Editar'
         TabOrder = 0
+        OnClick = EditarDisciplinaClick
       end
       object AdicionarDisciplina: TButton
         Left = 471
@@ -198,6 +200,7 @@ object Form2: TForm2
         Height = 26
         Caption = 'Listar'
         TabOrder = 4
+        OnClick = ListarDisciplinaClick
       end
     end
     object TabSheet4: TTabSheet
