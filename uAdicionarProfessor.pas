@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uProfessor, System.Generics.Collections, uDB;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, uProfessor, System.Generics.Collections, uDB,
+  Vcl.Mask;
 
 type
   TFormProfessores = class(TForm)
@@ -13,8 +14,8 @@ type
     Label3: TLabel;
     EditNome: TEdit;
     Adiconar: TButton;
-    EditCpf: TEdit;
     Label2: TLabel;
+    MaskEditCpf: TMaskEdit;
     procedure AdiconarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -56,7 +57,7 @@ var
 begin
   try
     nome := EditNome.Text;
-    cpf := EditCpf.Text;
+    cpf := MaskEditCpf.Text;
 
     DataModule1.FDQueryEstudante.SQL.Text :=
       'INSERT INTO professores (nome, cpf) VALUES (' + QuotedStr(nome) + ',' +  QuotedStr(cpf) + ') returning id';

@@ -4,13 +4,13 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor, uEditarProf, uDisciplina, uAdicionarDisciplina, uEditarDisciplina;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, uDB, uEstudante, uEditarEstud, System.Generics.Collections, uMenuEstudantes, uAdicionarProfessor, uProfessor, uEditarProf, uDisciplina, uAdicionarDisciplina, uEditarDisciplina,
+  System.ImageList, Vcl.ImgList, Vcl.Imaging.jpeg, Vcl.Mask;
 
 type
   TForm2 = class(TForm)
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
-    Label1: TLabel;
     AdicionarEstudantes: TButton;
     DeletarEstudantes: TButton;
     ListarEstudantes: TButton;
@@ -24,14 +24,30 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
-    Label2: TLabel;
     ListBoxProfessores: TListBox;
     EditarDisciplina: TButton;
     AdicionarDisciplina: TButton;
     ListBoxDisciplinas: TListBox;
-    Label3: TLabel;
     DeletarDisciplina: TButton;
     ListarDisciplina: TButton;
+    ImageList1: TImageList;
+    Image1: TImage;
+    Image2: TImage;
+    Label1: TLabel;
+    Label3: TLabel;
+    Image3: TImage;
+    Label2: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Button1: TButton;
+    Label4: TLabel;
+    Button2: TButton;
+    ListBox1: TListBox;
+    Label8: TLabel;
+    Image4: TImage;
+    Button3: TButton;
+    Button4: TButton;
     procedure AdicionarEstudantesClick(Sender: TObject);
     procedure ListarEstudantesClick(Sender: TObject);
     procedure DeletarEstudantesClick(Sender: TObject);
@@ -206,7 +222,7 @@ begin
 
 
   nome := ListBoxProfessores.Items[ListBoxProfessores.ItemIndex];
-  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+  id := StrToInt(Copy(nome, 1, Pos('  -  ', nome) - 1));
 
   confirmacao := MessageDlg('Deseja realmente excluir este professor?', mtConfirmation, [mbYes, mbNo], 0);
   if confirmacao = mrYes then
@@ -226,7 +242,7 @@ procedure TForm2.DeletarDisciplinas(Disciplina: TDisciplina);
   id: Integer;
   confirmacao: Integer;
 begin
-  if ListBoxEstudantes.ItemIndex = -1 then
+  if ListBoxDisciplinas.ItemIndex = -1 then
   begin
     ShowMessage('Selecione um estudante para deletar.');
     Exit;
@@ -234,7 +250,7 @@ begin
 
 
   nome := ListBoxDisciplinas.Items[ListBoxDisciplinas.ItemIndex];
-  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+  id := StrToInt(Copy(nome, 1, Pos('  -  ', nome) - 1));
 
   confirmacao := MessageDlg('Deseja realmente excluir esta disciplina?', mtConfirmation, [mbYes, mbNo], 0);
   if confirmacao = mrYes then
@@ -260,7 +276,7 @@ begin
 
 
   nome := ListBoxEstudantes.Items[ListBoxEstudantes.ItemIndex];
-  id := StrToInt(Copy(nome, 1, Pos(' -', nome) - 1));
+  id := StrToInt(Copy(nome, 1, Pos('  -  ', nome) - 1));
 
   confirmacao := MessageDlg('Deseja realmente excluir este estudante?', mtConfirmation, [mbYes, mbNo], 0);
   if confirmacao = mrYes then
@@ -307,7 +323,7 @@ begin
 
     end;
      for var prof in FormProfessores.listaprofessores do begin
-      ListBoxProfessores.AddItem(Prof.GetCodigo.ToString + ' - '+ 'Professor(a): ' + prof.GetNome + ' Cpf: ' + prof.GetCpf, nil);
+      ListBoxProfessores.AddItem(Prof.GetCodigo.ToString + '  -  ' + prof.GetNome + '  -  ' + prof.GetCpf, nil);
 
     end;
   except
@@ -342,7 +358,7 @@ begin
 
     end;
      for var discip in FormDisciplinas.listadisciplinas do begin
-      ListBoxDisciplinas.AddItem(discip.GetCodigo.ToString + ' - ' + discip.GetNome, nil);
+      ListBoxDisciplinas.AddItem(discip.GetCodigo.ToString + '  -  ' + discip.GetNome, nil);
     end;
   except
     on E: Exception do
@@ -374,7 +390,7 @@ begin
 
     end;
      for var estud in FormEstudantes.listaestudantes do begin
-      ListBoxEstudantes.AddItem(estud.GetCodigo.ToString + ' - ' + estud.GetNome, nil);
+      ListBoxEstudantes.AddItem(estud.GetCodigo.ToString + '  -  ' + estud.GetNome, nil);
 
     end;
   except

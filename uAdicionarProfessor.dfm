@@ -61,12 +61,15 @@ object FormProfessores: TFormProfessores
       TabOrder = 1
       OnClick = AdiconarClick
     end
-    object EditCpf: TEdit
+    object MaskEditCpf: TMaskEdit
       Left = 64
-      Top = 152
+      Top = 154
       Width = 201
       Height = 23
+      EditMask = '000\.000.000-00;'
+      MaxLength = 14
       TabOrder = 2
+      Text = '   .   .   -  '
     end
   end
 end
